@@ -7,6 +7,7 @@ ENV NGINX_GRAPHITE_MODULE_VERSION 1.1.0
 ENV LIBRDKAFKA_VER 0.9.3
 ENV NGINX_ECHO_MODULE_VERSION 0.62
 ENV NGINX_KAFKA_LOG_MODULE_VERSION 1.0
+ENV NGINX_LDAP_MODULE_VERSION dbcef31bebb2d54b6120422d0b178bbf78bc48f7
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& CONFIG="\
 		--prefix=/etc/nginx \
@@ -80,7 +81,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& curl -fSL https://github.com/edenhill/librdkafka/archive/v$LIBRDKAFKA_VER.tar.gz -o librdkafka-$LIBRDKAFKA_VER.tar.gz \
 	&& curl -fSL http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
 	&& curl -fSL http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz.asc  -o nginx.tar.gz.asc \
-	# && curl -fSL https://github.com/brg-liuwei/ngx_kafka_module/archive/v$NGINX_KAFKA_MODULE_VERSION.tar.gz -o ngx_kafka_module-$NGINX_KAFKA_MODULE_VERSION.tar.gz \
+	&& curl -fSL https://github.com/brg-liuwei/ngx_kafka_module/archive/v$NGINX_KAFKA_MODULE_VERSION.tar.gz -o ngx_kafka_module-$NGINX_KAFKA_MODULE_VERSION.tar.gz \
 	&& curl -fSL https://github.com/mailru/graphite-nginx-module/archive/v$NGINX_GRAPHITE_MODULE_VERSION.tar.gz -o graphite-nginx-module-$NGINX_GRAPHITE_MODULE_VERSION.tar.gz \
 	&& curl -fSL https://github.com/openresty/echo-nginx-module/archive/refs/tags/v$NGINX_ECHO_MODULE_VERSION.tar.gz -o ngx_echo_module-$NGINX_ECHO_MODULE_VERSION.tar.gz \
 	&& curl -fSL https://github.com/kaltura/nginx-kafka-log-module/archive/refs/tags/v$NGINX_KAFKA_LOG_MODULE_VERSION.tar.gz -o ngx_kafka_log_module-$NGINX_KAFKA_LOG_MODULE_VERSION.tar.gz \

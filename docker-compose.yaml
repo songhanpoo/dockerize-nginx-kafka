@@ -29,12 +29,6 @@ services:
       external:
         ipv4_address: 172.16.238.3
 
-# volumes:
-#   conf:
-#   vhost:
-#   dhparam:
-#   certs:
-
 networks:
   external:
     driver: bridge
