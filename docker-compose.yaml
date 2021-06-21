@@ -1,6 +1,9 @@
 version: "3.3"
 services:
   kafka_nginx:
+    build:
+      dockerfile: .Dockerfile
+      context: .
     image: nginx-kafka:1.0.55
     restart: unless-stopped
     volumes:
@@ -12,9 +15,6 @@ services:
     - "80:80"
     - "443:443"
     - "8080:8080"
-    networks:
-      external:
-        ipv4_address: 172.16.238.2
   nginx_exporter:
     image: nginx/nginx-prometheus-exporter:0.9.0
     restart: unless-stopped
@@ -25,9 +25,6 @@ services:
     - http://kafka_nginx:8080/stub_status
     depends_on:
     - kafka_nginx
-    networks:
-      external:
-        ipv4_address: 172.16.238.3
 
 networks:
   external:
